@@ -3,7 +3,7 @@
 // =====================
 const API_KEY = 'ce0d1040e3b7e67747909494432bf3f1'; // Replace with your TMDB key
 const BASE_URL = 'https://api.themoviedb.org/3';
-const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
+const IMG_URL = 'https://image.tmdb.org/t/p/original';
 
 // =====================
 // SEARCH BAR FUNCTIONS
@@ -83,4 +83,5 @@ window.onclick = function(event) {
     searchModal.style.display = "none";
   }
 };
+
 
