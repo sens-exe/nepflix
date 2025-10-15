@@ -15,6 +15,29 @@ body {
 }
 
 /* NAVBAR */
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo {
+  height: 45px;
+  width: auto;
+  border-radius: 8px;
+  margin-right: 8px;
+}
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #e50914; /* Netflix red */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Arial Black', sans-serif;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -372,3 +395,4 @@ body {
     gap: 8px;
   }
 }
+
