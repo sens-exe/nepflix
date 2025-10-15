@@ -2,80 +2,139 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NEPFLIX</title>
-  <link rel="stylesheet" href="css/home.css">
-  <link rel="preconnect" href="https://image.tmdb.org">
-  <link rel="preload" href="css/home.css" as="style">
-  <link rel="preload" href="js/home.js" as="script">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MovieVerse | Watch Latest Movies</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar">
-    <img src="" alt="NEPFLIX">
+    <img src="logo.png" alt="MovieVerse Logo" />
     <div class="nav-links">
-      <button onclick="openSearchModal()">🔍 Search</button>
+      <a href="#">Home</a>
+      <a href="#">Movies</a>
+      <a href="#">Series</a>
+      <a href="#">Genres</a>
+      <a href="#">Contact</a>
     </div>
+    <input type="text" class="search-bar" placeholder="Search movies..." />
   </nav>
 
   <!-- ===== BANNER ===== -->
-  <header id="banner">
-    <h1 id="banner-title">Loading...</h1>
-  </header>
-
-  <!-- ===== MOVIE SECTIONS ===== -->
-  <section>
-    <h2>Trending Movies</h2>
-    <div id="movies-list" class="movie-container"></div>
+  <section
+    class="banner"
+    style="background-image: url('banner.jpg');"
+  >
+    <h1>Stream the Latest Blockbusters</h1>
   </section>
 
-  <section>
-    <h2>Trending TV Shows</h2>
-    <div id="tvshows-list" class="movie-container"></div>
+  <!-- ===== MOVIE ROWS ===== -->
+  <section class="row">
+    <h2>🔥 Trending Now</h2>
+    <div class="list">
+      <img src="movie1.jpg" alt="Movie 1" />
+      <img src="movie2.jpg" alt="Movie 2" />
+      <img src="movie3.jpg" alt="Movie 3" />
+      <img src="movie4.jpg" alt="Movie 4" />
+      <img src="movie5.jpg" alt="Movie 5" />
+    </div>
   </section>
 
-  <section>
-    <h2>Trending Anime</h2>
-    <div id="anime-list" class="movie-container"></div>
+  <section class="row">
+    <h2>🎥 New Releases</h2>
+    <div class="list">
+      <img src="movie6.jpg" alt="Movie 6" />
+      <img src="movie7.jpg" alt="Movie 7" />
+      <img src="movie8.jpg" alt="Movie 8" />
+      <img src="movie9.jpg" alt="Movie 9" />
+      <img src="movie10.jpg" alt="Movie 10" />
+    </div>
   </section>
 
-  <!-- ===== MODAL ===== -->
-  <div id="modal">
+  <!-- ===== MOVIE MODAL ===== -->
+  <div class="modal" id="movieModal">
     <div class="modal-content">
-      <div class="modal-top">
-        <img id="modal-image" src="" alt="Poster">
-        <div class="modal-details">
-          <h3 id="modal-title"></h3>
-          <div id="modal-rating" class="rating"></div>
-          <p id="modal-description"></p>
+      <span class="close" id="closeModal">&times;</span>
+      <div class="modal-body">
+        <img src="movie1.jpg" alt="Movie Poster" />
+        <div class="modal-text">
+          <h2>Movie Title</h2>
+          <p><span class="stars">★★★★★</span></p>
+          <p><strong>Genre:</strong> Action, Adventure</p>
+          <p><strong>Duration:</strong> 2h 15m</p>
+          <p><strong>Release:</strong> 2025</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel eros ut neque placerat fermentum.</p>
         </div>
       </div>
-      <div class="modal-actions">
-        <select id="server" onchange="changeServer()">
-          <option value="vidsrc.cc">vidsrc.cc</option>
-          <option value="vidsrc.me">vidsrc.me</option>
-          <option value="player.videasy.net">videasy</option>
-        </select>
-        <button onclick="closeModal()">Close</button>
-      </div>
-      <div class="modal-bottom">
-        <iframe id="modal-video" allowfullscreen></iframe>
+      <div class="server-selector">
+        <h3>Choose Server:</h3>
+        <button>Server 1</button>
+        <button>Server 2</button>
+        <button>Server 3</button>
       </div>
     </div>
   </div>
 
   <!-- ===== SEARCH MODAL ===== -->
-  <div id="search-modal">
-    <div class="modal-content" style="max-width:900px;">
-      <input type="text" id="search-input" placeholder="Search for movies, TV shows, or anime...">
-      <div id="search-results"></div>
-      <div style="text-align:center; margin-top:10px;">
-        <button onclick="closeSearchModal()">Close</button>
-      </div>
+  <div class="search-modal" id="searchModal">
+    <span class="close" id="closeSearch">&times;</span>
+    <input type="text" id="searchInput" placeholder="Search for a movie..." />
+    <div class="results">
+      <img src="result1.jpg" alt="Result 1" />
+      <img src="result2.jpg" alt="Result 2" />
+      <img src="result3.jpg" alt="Result 3" />
     </div>
   </div>
 
-  <script src="js/home.js" defer></script>
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 MovieVerse. All Rights Reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Help Center</a>
+        <a href="#">About Us</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== JS INTERACTIVITY ===== -->
+  <script>
+    const modal = document.getElementById("movieModal");
+    const closeModal = document.getElementById("closeModal");
+    const searchModal = document.getElementById("searchModal");
+    const closeSearch = document.getElementById("closeSearch");
+    const searchBar = document.querySelector(".search-bar");
+
+    // Open modal when a movie is clicked
+    document.querySelectorAll(".list img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "flex";
+      });
+    });
+
+    // Close movie modal
+    closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    // Open search modal
+    searchBar.addEventListener("focus", () => {
+      searchModal.style.display = "flex";
+      searchBar.blur(); // Prevents input focus duplication
+    });
+
+    // Close search modal
+    closeSearch.addEventListener("click", () => {
+      searchModal.style.display = "none";
+    });
+
+    // Close modals on outside click
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) modal.style.display = "none";
+      if (e.target === searchModal) searchModal.style.display = "none";
+    });
+  </script>
 </body>
 </html>
-
