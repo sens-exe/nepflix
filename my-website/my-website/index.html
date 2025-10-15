@@ -1,77 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic Meta -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Watch trending movies, TV shows, and anime on NEPFLIX. Powered by TMDB API." />
-  <meta name="theme-color" content="#111" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEPFLIX</title>
 
-  <!-- Title & Favicon -->
-  <title>NEPFLIX — Watch Trending Movies & Shows</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/home.css" />
-  <link rel="preload" href="css/home.css" as="style" />
-  <link rel="preload" href="js/home.js" as="script" />
-
-  <!-- Manifest & Fonts -->
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <!-- Scripts -->
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="preload" href="css/home.css" as="style">
+  <link rel="preload" href="js/home.js" as="script">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script defer src="js/home.js"></script>
 </head>
 
 <body>
   <!-- Navbar -->
-  <header class="navbar">
-    <div class="nav-left">
-      <a href="index.html">
-        <img src="logo.png" alt="NEPFLIX Logo" height="40" loading="lazy" />
-      </a>
+  <div class="navbar">
+    <img src="logo.png" alt="NEPFLIX Logo" />
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <input type="text" id="search-bar" class="search-bar" placeholder="Search...">
     </div>
-    <nav class="nav-right">
-      <a href="index.html" class="active">Home</a>
-      <button class="search-btn" onclick="openSearchModal()" aria-label="Open Search">
-        <i class="fa fa-search"></i>
-      </button>
-    </nav>
-  </header>
+  </div>
 
-  <!-- Hero Banner -->
-  <section class="banner" id="banner">
-    <div class="banner-overlay">
-      <h1 id="banner-title">Loading...</h1>
-    </div>
-  </section>
+  <!-- Banner -->
+  <div class="banner" id="banner">
+    <h1 id="banner-title">Welcome to NEPFLIX</h1>
+  </div>
 
-  <!-- Main Content -->
-  <main>
-    <section class="row">
-      <h2>🎬 Trending Movies</h2>
-      <div class="list" id="movies-list"></div>
-    </section>
+  <!-- Movie Sections -->
+  <div class="row">
+    <h2>Trending Movies</h2>
+    <div class="list" id="movies-list"></div>
+  </div>
 
-    <section class="row">
-      <h2>📺 Trending TV Shows</h2>
-      <div class="list" id="tvshows-list"></div>
-    </section>
+  <div class="row">
+    <h2>Trending TV Shows</h2>
+    <div class="list" id="tvshows-list"></div>
+  </div>
 
-    <section class="row">
-      <h2>🎌 Trending Anime</h2>
-      <div class="list" id="anime-list"></div>
-    </section>
-  </main>
+  <div class="row">
+    <h2>Trending Anime</h2>
+    <div class="list" id="anime-list"></div>
+  </div>
 
-  <!-- Movie Details Modal -->
-  <div class="modal" id="modal" role="dialog" aria-modal="true">
+  <!-- Modal -->
+  <div class="modal" id="modal">
     <div class="modal-content">
-      <button class="close" onclick="closeModal()" aria-label="Close Modal">&times;</button>
-      
+      <span class="close" onclick="closeModal()">&times;</span>
       <div class="modal-body">
-        <img id="modal-image" src="" alt="Poster" loading="lazy" />
+        <img id="modal-image" src="" alt="" />
         <div class="modal-text">
           <h2 id="modal-title"></h2>
           <div class="stars" id="modal-rating"></div>
@@ -84,37 +62,29 @@
         <select id="server" onchange="changeServer()">
           <option value="vidsrc.cc">Vidsrc.cc</option>
           <option value="vidsrc.me">Vidsrc.me</option>
-          <option value="player.videasy.net">Player.Videasy.net</option>
+          <option value="player.videasy.net">Videasy.net</option>
         </select>
       </div>
-
-      <iframe id="modal-video" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
+      <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
   <!-- Search Modal -->
-  <div class="search-modal" id="search-modal" role="dialog" aria-modal="true">
-    <div class="search-box">
-      <button class="close" onclick="closeSearchModal()" aria-label="Close Search">&times;</button>
-      <input
-        type="text"
-        id="search-input"
-        placeholder="Search for a movie, TV show, or anime..."
-        autocomplete="off"
-      />
-      <div class="results" id="search-results"></div>
-    </div>
+  <div class="search-modal" id="search-modal">
+    <span class="close" onclick="closeSearchModal()">&times;</span>
+    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
+    <div class="results" id="search-results"></div>
   </div>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
       <p>&copy; 2025 NEPFLIX. All rights reserved.</p>
-      <nav class="footer-links">
+      <div class="footer-links">
         <a href="#">Disclaimer</a>
         <a href="#">About Us</a>
-        <a href="#">Contact</a>
-      </nav>
+        <a href="#">Contact Us</a>
+      </div>
     </div>
   </footer>
 </body>
